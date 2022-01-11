@@ -169,6 +169,7 @@ int CRC8(unsigned char* data, int size)
 		for (i = 0; i < size; i++)
 			checksum = CRC8_tbl[data[i] ^ checksum];
 	}
+	return checksum;
 }
 
 int CRC16(unsigned char* data, int size)

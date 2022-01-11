@@ -1,6 +1,6 @@
 /*
   @Date: 2018/12/10
-  @Version: 1.0.1
+  @Version: 1.0.2
   @Author: MJS
   @Description:
 	RSA decoder head file
@@ -16,55 +16,50 @@
 		the actual bn is 0x303132333435
   @history:
 	1.0.1: Fix some bugs
+	2022/1/11 - v1.0.2: add something
 */
-#ifndef HEAD_RSA
-#define HEAD_RSA
+#ifndef ALGORITHM_RSA_H_
+#define ALGORITHM_RSA_H_
 
 #include<stdlib.h>
 #include<stdint.h>
 #include<string.h>
 
-#define HIDWORD(X) (*((uint32_t*)&(X)+1))
-#define LODWORD(X) (*((uint32_t*)&(X)))
-#define ByteToInt(X) ((*((uint8_t*)X)<<24)|(*((uint8_t*)X+1)<<16)|(*((uint8_t*)X+2)<<8)|(*((uint8_t*)X+3)))
-#define ResInt(X)  ((4-(X&0x3))&0x3)  //ex: X=35, 35*4=8бнбн3  return (4-3) 
-#define CeilInt(X) ((X+3)&0xFFFFFFFC) //ex: X=78, 78*4=19бнбн2  return (19+1)
-#define MakeQword(X,Y) ((((uint64_t)(X))<<32)|(Y))
-
 struct RSA_t
 {
 	uint8_t* cipherText; /* encrypt data*/
-	uint32_t CTsize;
+	int CTsize;
 
 	uint8_t* n;
-	uint32_t Nsize;
+	int Nsize;
 
 	uint8_t* key;
-	uint32_t Ksize;
+	int Ksize;
 
 	uint8_t* plainText; /* decrypt data*/
-	uint32_t PTsize;    /*must more than Nsize*/
+	int PTsize;    /*must more than Nsize*/
 };
 
 struct bn_t
 {
 	uint32_t* bnd;   /*big number data, reverse order*/
-	uint32_t  size;  /*how many dword of bn*/
+	int  size;  /*how many dword of bn*/
 };
 
-uint8_t        RSA(struct RSA_t* RSAt);
+int RSA(struct RSA_t* RSAt);
+int RSA_enc(void* cipher, int cipher_len, void* plain, int plain_len, char* key, char* n);
+int RSA_dec(void* cipher, int cipher_len, void* plain, int plain_len, char* e, char* n);
 
-uint8_t        bmul(struct bn_t* a, struct bn_t* b);
-uint8_t        bmod(struct bn_t* a, struct bn_t* b);
-struct bn_t* badd(struct bn_t* a, struct bn_t* b);
+int bmul(struct bn_t* src_dst, struct bn_t* src);
+int bmod(struct bn_t* src_dst, struct bn_t* src);
+struct bn_t* badd(struct bn_t* src1, struct bn_t* src2);
 
 struct bn_t* binit(uint8_t* bnSeq, uint32_t size);
-uint8_t        bdeit(struct bn_t* bnt);
-uint32_t       bseq(uint8_t* seq, struct bn_t* bnt);
-void           bcpy(struct bn_t* a, struct bn_t* b);
+int bfree(struct bn_t* bn);
+void print_bn(struct bn_t* bn);
 
-uint8_t        byteReverse(uint8_t* a, uint16_t length);
-uint32_t* formatByte(uint8_t* a, uint32_t* len);
-void           print_bn(struct bn_t* bn);
+uint8_t* rsa_byte_init(char* hex);
+int rsa_byte_len(char* hex);
+void rsa_byte_free(uint8_t* byte);
 
-#endif
+#endif	//ALGORITHM_RSA_H_

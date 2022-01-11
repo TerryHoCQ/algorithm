@@ -18,19 +18,22 @@
     <ClCompile Include="aes\aes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CRC\CRC.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CRC\CRC_table_calc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RSA\RSA.c">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SHA1\SHA1.c">
+    <ClCompile Include="F15\f15.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SHA1\SHA1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RSA\RSA.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SHA1\SHA1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="F15\f15.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

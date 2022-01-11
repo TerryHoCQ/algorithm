@@ -7,8 +7,8 @@
 				output: 160bit(SHA1 value)
 */
 
-#ifndef HEAD_SHA1
-#define HEAD_SHA1
+#ifndef __SHA1_H__
+#define __SHA1_H__
 
 #include<stdlib.h>
 #include<stdint.h>
@@ -25,22 +25,22 @@
 /* define struct of SHA1*/
 struct SHA1_t
 {
-	/* 5 variable*/
+	/* 5 variable */
 	uint32_t H0;
 	uint32_t H1;
 	uint32_t H2;
 	uint32_t H3;
 	uint32_t H4;
 	
-	/* SHA1 data, must be 512bits(16block,32bit pre sub_block)*/
+	/* SHA1 data, must be 512bits(16block,32bit pre sub_block) */
 	uint8_t data[64];
 	
-	/* SHA1 extend data*/
+	/* SHA1 extend data */
 	uint32_t edata[80];
 };
 
 /* define function declaration*/
-uint8_t SHA1(uint8_t *sha1, uint8_t *input, uint64_t size);
+uint8_t SHA1(uint8_t *sha1, uint8_t *input, int size);
 void SHA1_init(struct SHA1_t *SHA1t);
 void SHA1_sub(struct SHA1_t *SHA1t);
 void SHA1_extend(struct SHA1_t *SHA1t);

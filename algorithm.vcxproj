@@ -111,13 +111,15 @@
     <ClCompile Include="aes\aes.cpp" />
     <ClCompile Include="CRC\CRC.c" />
     <ClCompile Include="CRC\CRC_table_calc.c" />
+    <ClCompile Include="F15\f15.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="RSA\RSA.c" />
-    <ClCompile Include="SHA1\SHA1.c" />
+    <ClCompile Include="RSA\RSA.cpp" />
+    <ClCompile Include="SHA1\SHA1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aes\aes.h" />
     <ClInclude Include="CRC\CRC.h" />
+    <ClInclude Include="F15\f15.h" />
     <ClInclude Include="RSA\RSA.h" />
     <ClInclude Include="SHA1\SHA1.h" />
   </ItemGroup>
